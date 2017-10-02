@@ -6,14 +6,17 @@ tweets = []
 
 def perform_analysis(text):
     global tweets
+    tweets = []
     sentiments = []
     polarities = []
     subjectivities = []
     try:
         get_tweets(text)
+        print("Tweets retrieval successful")
     except:
+        print("Tweets retrieval unsuccessful")
         if not tweets:
-            return [0, False,0]
+            return ["Tweets retrieval unsuccessful", False,0]
     for tweet in tweets:
         tb = TextBlob(str(tweet))
         print(tb.sentiment)

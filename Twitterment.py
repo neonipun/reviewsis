@@ -3,7 +3,8 @@ from tkinter import ttk
 from tkinter.filedialog import asksaveasfile
 from tkinter import messagebox
 import pandas
-import demo
+import twitterment_module
+import visualstats_module
 
 root = Tk()
 Title = root.title("Twitterment")
@@ -11,19 +12,21 @@ rdf = []
 
 def search():
     root.update()
+    global rdf
+    rdf = []
     search_text = search_textbox.get()
     if not search_text:
         messagebox.showwarning("Text Entry", "No Search term entered")
     else:
         print("Performing Analysis")
         analysis_content.config(text = "....Performing Analysis....")
-        x = demo.perform_analysis(search_text)
+        root.update()
+        x = twitterment_module.perform_analysis(search_text)
         analysis_content.config(text = x[0] )
         if x[1]:
             b1.config(state = NORMAL)
             b2.config(state = NORMAL)
             b3.config(state = NORMAL)
-            global rdf
             rdf = x[2]
             print(rdf)
         root.update()
@@ -32,12 +35,13 @@ def search():
 def save_analysis():
     file = asksaveasfile(mode='w', defaultextension=".csv", filetypes=[('CSV Files','*.csv')])
     print(file.name, "save file name")
-    demo.generateCSV(rdf,file.name)
+    twitterment_module.generateCSV(rdf,file.name)
     root.update()
     messagebox.showinfo("Copy Brief Analysis Content", "Successfully Generated and Saved File to :\n" + file.name)
 
 def view_stats():
     print("Viewing Stats")
+    visualstats_module.show_visuals(rdf)
 
 def copy_content():
     root.clipboard_clear()

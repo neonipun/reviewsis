@@ -1,3 +1,4 @@
+import os
 from tkinter import *
 from tkinter import ttk
 from tkinter.filedialog import askopenfile,asksaveasfile
@@ -44,6 +45,7 @@ def analysis():
             b2.config(state = NORMAL)
             b3.config(state = NORMAL)
             adf = x[2]
+            print(adf)
             select_label.config(text = "Analysis Complete")
         else:
             analysis_content.config(text = x[0])

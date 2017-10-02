@@ -13,7 +13,6 @@ def perform_analysis(file):
         return ["Check CSV File format : Review Content Column is missing", False,0]
     for review in reviews:
         tb = TextBlob(str(review))
-        print(tb.sentiment)
         polarities.append(tb.sentiment.polarity)    
         subjectivities.append(tb.sentiment.subjectivity)
         # set sentiment
