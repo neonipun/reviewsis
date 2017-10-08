@@ -58,7 +58,7 @@ def save_analysis():
     print(file.name, "save file name")
     reviewsis_module.generateCSV(adf,file.name)
     root.update()
-    messagebox.showinfo("Copy Brief Analysis Content", "Successfully Generated and Saved File to :\n" + file.name)
+    messagebox.showinfo("Saved Analysis", "Successfully Generated and Saved File to :\n" + file.name)
 
 def view_stats():
     print("Viewing Stats")
