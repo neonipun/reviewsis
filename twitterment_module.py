@@ -2,16 +2,16 @@ import tweepy
 from textblob import TextBlob
 import pandas as pd
 
-tweets = []
+def BMP(s):
+    return "".join((i if ord(i) < 10000 else '\ufffd' for i in s))
 
 def perform_analysis(text):
-    global tweets
     tweets = []
     sentiments = []
     polarities = []
     subjectivities = []
     try:
-        get_tweets(text)
+        tweets = get_tweets(text)
         print("Tweets retrieval successful")
     except:
         print("Tweets retrieval unsuccessful")
@@ -19,7 +19,6 @@ def perform_analysis(text):
             return ["Tweets retrieval unsuccessful", False,0]
     for tweet in tweets:
         tb = TextBlob(str(tweet))
-        print(tb.sentiment)
         polarities.append(tb.sentiment.polarity)    
         subjectivities.append(tb.sentiment.subjectivity)
         # set sentiment
@@ -49,8 +48,6 @@ def generateCSV(rdf,file):
     print ("Successfully Generated")
 
 def get_tweets(text):
-    
-    value = ""
     # Authenticate NipunRamagiri Credentials to use API
     consumer_key= 'nfy8PO4EUBlOyZoxWvBlZRrgU'
     consumer_secret= 'mI14XXCYzfyY3123jnSUlsuMAMD2eFAMbNBJV4TbAM1HFSebut'
@@ -64,11 +61,12 @@ def get_tweets(text):
     api = tweepy.API(auth)
 
     # Retrieve Tweets
-    public_tweets = api.search(text,count=15)
+    public_tweets = api.search(text, count = 50)
     
-    global tweets
+    tweets = []
 
     for tweet in public_tweets:
-        print(tweet.text)
-        tweets.append(str(tweet.text))
+        tweets.append(BMP(tweet.text))
+        
+    return tweets
 

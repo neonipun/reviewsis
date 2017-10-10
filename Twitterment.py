@@ -28,7 +28,6 @@ def search():
             b2.config(state = NORMAL)
             b3.config(state = NORMAL)
             rdf = x[2]
-            print(rdf)
         root.update()
                 
 
