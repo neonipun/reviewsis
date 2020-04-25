@@ -49,11 +49,11 @@ def generateCSV(rdf,file):
 
 def get_tweets(text):
     # Authenticate NipunRamagiri Credentials to use API
-    consumer_key= 'nfy8PO4EUBlOyZoxWvBlZRrgU'
-    consumer_secret= 'mI14XXCYzfyY3123jnSUlsuMAMD2eFAMbNBJV4TbAM1HFSebut'
+    consumer_key= 'REDACTED'
+    consumer_secret= 'REDACTED'
 
-    access_token='884661639915593728-GTr6tsa1qFqQM6hv3zZUN9BqMjfYEUx'
-    access_token_secret='Xik1JSoKAtHjRwVKRRbORQ7lZUKpOeQg4s3HmETFbwIkd'
+    access_token='REDACTED'
+    access_token_secret='REDACTED'
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
